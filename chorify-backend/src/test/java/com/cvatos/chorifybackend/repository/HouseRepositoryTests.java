@@ -17,7 +17,7 @@ import com.cvatos.chorifybackend.model.House;
 @SpringBootTest(classes = ChorifyBackendApplication.class)
 public class HouseRepositoryTests {
 
-    // To set up single house instance that will get created as part of the "Arrage" portion of each test
+    // To set up single house instance that will get created as part of the "Arrange" portion of each test
     public House createdHouse;
 
     @Autowired
