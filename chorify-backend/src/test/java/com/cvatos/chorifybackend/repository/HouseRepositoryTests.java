@@ -66,8 +66,4 @@ public class HouseRepositoryTests {
         assertEquals(createdHouseName, createdHouse.getHouseName());
         assertEquals(5, createdHouse.getNumberOfMembers()); 
     }
-
-
-    
-    
 }
