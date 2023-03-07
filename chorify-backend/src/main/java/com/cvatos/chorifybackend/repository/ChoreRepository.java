@@ -15,13 +15,14 @@ import com.cvatos.chorifybackend.model.Chore.ChoreStatus;
 @Repository
 public interface ChoreRepository extends CrudRepository<Chore, Integer> {
    
+    Chore findById(int id);
     Chore findByChoreName(String choreName);
     List<Chore> findAllByChoreStatus(ChoreStatus choreStatus);
     List<Chore> findAllByDifficultyEstimator(int difficultyEstimator);
-    List<Chore> findByDueDateBefore(Date dueDate);
-    List<Chore> findByDueDate(Date dueDate);
-    List <Chore> findByChoreAssignee(HouseMember houseMember);
-    List <Chore> findByChoreAssigner(HouseManager houseManager);
-    List <Chore> findByHouse(House house);
+    List<Chore> findAllByDueDateBefore(Date dueDate);       // Does not retrieve entries on that due date; only before
+    List<Chore> findAllByDueDate(Date dueDate);
+    List<Chore> findByChoreAssignee(HouseMember houseMember);
+    List<Chore> findByChoreAssigner(HouseManager houseManager);
+    List<Chore> findByHouse(House house);
     
 } 

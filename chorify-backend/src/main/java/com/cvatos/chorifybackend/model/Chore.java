@@ -45,6 +45,14 @@ public class Chore {
     @ManyToOne
     private House house;
 
+    public House getHouse() {
+        return this.house;
+    }
+
+    public void setHouse(House house) {
+        this.house = house;
+    }
+
     public int getId() {
         return this.id;
     }
