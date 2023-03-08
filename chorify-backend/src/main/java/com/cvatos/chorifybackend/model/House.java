@@ -35,9 +35,14 @@ public class House {
     @OneToMany(mappedBy= "house", cascade = CascadeType.REMOVE, orphanRemoval = true)
     private Set<Chore> chores;
 
-    // No-Argument Constructor
+    // Constructors
     public House() {
+    
+    }
 
+    public House(String houseName, int numberOfMembers) {
+        this.houseName = houseName;
+        this.numberOfMembers = numberOfMembers;
     }
 
     // Getters + Setters

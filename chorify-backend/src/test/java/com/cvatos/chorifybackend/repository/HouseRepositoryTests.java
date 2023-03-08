@@ -1,6 +1,7 @@
 package com.cvatos.chorifybackend.repository;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNull;
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -66,4 +67,20 @@ public class HouseRepositoryTests {
         assertEquals(createdHouseName, createdHouse.getHouseName());
         assertEquals(5, createdHouse.getNumberOfMembers()); 
     }
+
+    @Test
+    public void testDeleteById() {
+        
+        // Act
+        int createdHouseID = createdHouse.getId();
+        houseRepository.deleteById(createdHouseID);
+
+        // Trying to retrieve deleted house
+        House retrievedHouse = houseRepository.findById(createdHouseID);
+
+        // Assert
+        assertNull(retrievedHouse);
+
+
+    } 
 }

@@ -10,4 +10,5 @@ public interface HouseRepository extends CrudRepository<House, Integer> {
 
     House findById(int id);
     House findByHouseName(String houseName);
+    void deleteById(int id);
 }
