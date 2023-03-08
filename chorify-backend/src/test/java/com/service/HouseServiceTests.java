@@ -125,6 +125,29 @@ public class HouseServiceTests {
         assertTrue(exception.getStatus() == HttpStatus.CONFLICT);
     }
 
+    @Test
+    public void updateHouseWithValidNewHouseNameAndValidId() {
+
+        int id = 2;
+        String newHouseName = "New House Name";
+        String oldHouseName = "Old House Name";
+        int numberOfMembers = 6;
+
+        House oldHouse = new House(oldHouseName, numberOfMembers);
+        House oldHouseNewName = oldHouse;
+        oldHouseNewName.setId(id);
+
+        Mockito.when(houseRepository.findById(id)).thenReturn(oldHouse);
+        Mockito.when(houseRepository.save(Mockito.any(House.class))).thenReturn(oldHouseNewName);
+
+        House newHouse = houseService.updateHouseName(id , newHouseName);
+
+        assertNotNull(newHouse);
+        assertTrue(newHouse.getId() == id);
+        assertTrue(newHouse.getHouseName().equals(newHouseName));
+        assertTrue(newHouse.getNumberOfMembers() == numberOfMembers);
+    }
+
 
 
 }

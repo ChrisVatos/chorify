@@ -54,9 +54,12 @@ public class HouseService {
     public House updateHouseName(int id, String newName) {
         
         House houseToUpdate = houseReposiory.findById(id);
+        House houseWithNewNameExists = houseReposiory.findByHouseName(newName);
 
         if(houseToUpdate == null) {
             throw new ChorifyException("House with ID of " + id + " does not exist.", HttpStatus.NOT_FOUND);
+        } else if(houseWithNewNameExists != null) {
+            throw new ChorifyException("House with name " + newName + " already exists.", HttpStatus.BAD_REQUEST);
         }
 
         houseToUpdate.setHouseName(newName);
