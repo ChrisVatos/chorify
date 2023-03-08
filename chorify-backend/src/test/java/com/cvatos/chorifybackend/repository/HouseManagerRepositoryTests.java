@@ -1,6 +1,7 @@
 package com.cvatos.chorifybackend.repository;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNull;
 
 import java.util.List;
 
@@ -157,5 +158,18 @@ public class HouseManagerRepositoryTests {
 
         // Assert 
         assertEquals(2, houseManagers.size());
+    }
+
+    @Test
+    public void testDeleteByID() {
+
+        // Act
+        int houseManagerIDToDelete = createdHouseManager.getId();
+        houseManagerRepository.deleteById(houseManagerIDToDelete);
+
+        HouseManager retrievedDeletedHouseMember = houseManagerRepository.findById(houseManagerIDToDelete);
+
+        // Assert
+        assertNull(retrievedDeletedHouseMember);
     }
 }

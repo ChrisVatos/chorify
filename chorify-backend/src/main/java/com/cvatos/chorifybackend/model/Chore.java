@@ -9,6 +9,7 @@ import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
@@ -37,12 +38,15 @@ public class Chore {
     private ChoreStatus choreStatus;
 
     @ManyToOne
+    @JoinColumn(name = "choreAssigner_id", referencedColumnName = "id", nullable = true)
     private HouseManager choreAssigner;
     
     @ManyToOne
+    @JoinColumn(name = "choreAssignee_id", referencedColumnName = "id", nullable = true)
     private HouseMember choreAssignee;
 
     @ManyToOne
+    @JoinColumn(name = "house_id", referencedColumnName = "id", nullable = true)
     private House house;
 
     public House getHouse() {

@@ -15,5 +15,6 @@ public interface HouseMemberRepository extends CrudRepository<HouseMember, Integ
     HouseMember findByEmailAddress(String emailAddress);
     HouseMember findByName(String name);
     List<HouseMember> findByHouse(House house);
+    void deleteById(int id);
     
 }

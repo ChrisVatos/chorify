@@ -17,4 +17,5 @@ public interface HouseManagerRepository extends CrudRepository<HouseManager, Int
     HouseManager findByName(String name);
     List<HouseManager> findAllByHouseManagerType(HouseManagerType houseManagerType);
     List<HouseManager> findByHouse(House house);
+    void deleteById(int id);
 }

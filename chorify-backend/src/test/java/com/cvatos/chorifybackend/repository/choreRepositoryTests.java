@@ -12,6 +12,8 @@ import com.cvatos.chorifybackend.model.Chore.ChoreStatus;
 import com.cvatos.chorifybackend.model.HouseManager.HouseManagerType;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.sql.Date;
@@ -346,5 +348,19 @@ public class choreRepositoryTests {
 
         // Assert
         assertTrue(choresAssignedToDefaultHouse.size() == 12);
+    }
+
+    @Test 
+    public void deleteByID() {
+        
+        // Act
+        int newChoreID = newChore.getId();
+        choreRepository.deleteById(newChoreID);
+
+        // Trying to retrieve the chore that was just deleted
+        Chore retrieveChoreByDeletedID = choreRepository.findById(newChoreID);
+
+        // Assert
+        assertNull(retrieveChoreByDeletedID);
     }
 }

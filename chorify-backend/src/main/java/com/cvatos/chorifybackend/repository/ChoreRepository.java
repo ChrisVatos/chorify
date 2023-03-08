@@ -24,5 +24,5 @@ public interface ChoreRepository extends CrudRepository<Chore, Integer> {
     List<Chore> findByChoreAssignee(HouseMember houseMember);
     List<Chore> findByChoreAssigner(HouseManager houseManager);
     List<Chore> findByHouse(House house);
-    
+    void deleteById(int id);
 } 

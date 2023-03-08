@@ -2,11 +2,13 @@ package com.cvatos.chorifybackend.model;
 
 import java.util.Set;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
@@ -24,13 +26,13 @@ public class House {
     @Column(name = "number_of_members", nullable = false)
     private int numberOfMembers;
 
-    @OneToMany(mappedBy = "house")
+    @OneToMany(mappedBy = "house", cascade = CascadeType.REMOVE, orphanRemoval = true)
     private Set<HouseManager> houseManagers;
 
-    @OneToMany(mappedBy = "house")
+    @OneToMany(mappedBy = "house", cascade = CascadeType.REMOVE, orphanRemoval = true)
     private Set<HouseMember> houseMembers;
 
-    @OneToMany(mappedBy= "house")
+    @OneToMany(mappedBy= "house", cascade = CascadeType.REMOVE, orphanRemoval = true)
     private Set<Chore> chores;
 
     // No-Argument Constructor
