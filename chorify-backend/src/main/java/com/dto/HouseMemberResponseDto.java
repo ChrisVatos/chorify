@@ -11,16 +11,15 @@ public class HouseMemberResponseDto {
     private String name;
     private String phoneNumber;
     private String emailAddress;
-    private House house;
     private Set<Chore> chores;
 
 
-    public HouseMemberResponseDto(int id, String name, String phoneNumber, String emailAddress, House house) {
+    public HouseMemberResponseDto(int id, String name, String phoneNumber, String emailAddress, Set<Chore> chores) {
         this.id = id;
         this.name = name;
         this.phoneNumber = phoneNumber;
         this.emailAddress = emailAddress;
-        this.house = house;
+        this.chores = chores;
     }
 
     // Getters (No setters to avoid modifying the data retrieved from backend)
@@ -38,10 +37,6 @@ public class HouseMemberResponseDto {
 
     public String getEmailAddress() {
         return this.emailAddress;
-    }
-
-    public House getHouse() {
-        return this.house;
     }
 
     public Set<Chore> getChores() {

@@ -16,15 +16,15 @@ public class HouseMemberRequestDto {
     private String emailAddress;
 
     @NonNull
-    private House house;
+    private int houseID;
 
 
     // Constructors
-    public HouseMemberRequestDto(String name, String phoneNumber, String emailAddress, House house) {
+    public HouseMemberRequestDto(String name, String phoneNumber, String emailAddress, int houseID) {
         this.name = name;
         this.phoneNumber = phoneNumber;
         this.emailAddress = emailAddress;
-        this.house = house;
+        this.houseID = houseID;
     }
 
     // Getters + Setters
@@ -52,11 +52,11 @@ public class HouseMemberRequestDto {
         this.emailAddress = emailAddress;
     }
 
-    public House getHouse() {
-        return this.house;
+    public int getHouseID() {
+        return this.houseID;
     }
 
-    public void setHouse(House house) {
-        this.house = house;
+    public void setHouseID(int houseID) {
+        this.houseID = houseID;
     }
 }

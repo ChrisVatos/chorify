@@ -24,14 +24,17 @@ public class HouseMemberService {
     private HouseRepository houseRepository;
 
     @Transactional
-    public HouseMember createHouseMember(HouseMember houseMemberToCreate) {
+    public HouseMember createHouseMember(HouseMember houseMemberToCreate, int houseID) {
 
         if(houseMemberRepository.findByEmailAddress(houseMemberToCreate.getEmailAddress()) != null) {
             throw new ChorifyException("House Member with email address " + houseMemberToCreate.getEmailAddress() + " already exists." , HttpStatus.CONFLICT);
         } else if(houseMemberRepository.findByPhoneNumber(houseMemberToCreate.getPhoneNumber()) != null) {
             throw new ChorifyException("House Member with phone number " + houseMemberToCreate.getPhoneNumber() + " already exists." , HttpStatus.CONFLICT);
+        } else if(houseRepository.findById(houseID) == null) {
+            throw new ChorifyException("House with id " + houseID + " does not exist." , HttpStatus.BAD_REQUEST);
         }
-
+    
+        houseMemberToCreate.setHouse(houseRepository.findById(houseID));
         return houseMemberRepository.save(houseMemberToCreate);
     }
 

@@ -38,15 +38,22 @@ public class HouseMemberServiceTests {
     @Test
     public void testCreateHouseMember() {
 
+        int id = 6;
         String name = "Chris Vatos";
         String email = "cvatos@gmail.com";
         String phoneNumber = "514-654-9873";
 
         HouseMember houseMemberToCreate = new HouseMember(name, phoneNumber, email);
 
+        int houseID = 2;
+        String houseName = "New House Name";
+        int numberOfMembers = 6;
+
+        House house = new House(houseName, numberOfMembers);
+
         Mockito.when(houseMemberRepository.save(Mockito.any(HouseMember.class))).thenReturn(houseMemberToCreate);
-    
-        HouseMember createdHouseMember = houseMemberService.createHouseMember(houseMemberToCreate);
+        Mockito.when(houseRepository.findById(houseID)).thenReturn(house);
+        HouseMember createdHouseMember = houseMemberService.createHouseMember(houseMemberToCreate, houseID);
 
         assertNotNull(createdHouseMember);
         assertTrue(createdHouseMember.getName().equals(name));
@@ -57,6 +64,7 @@ public class HouseMemberServiceTests {
     @Test
     public void testCreateHouseMemberWithInvalidEmail() {
 
+        int id = 6;
         String name = "Chris Vatos";
         String email = "cvatos@gmail.com";
         String phoneNumber = "514-654-9873";
@@ -65,7 +73,7 @@ public class HouseMemberServiceTests {
 
         Mockito.when(houseMemberRepository.findByEmailAddress(email)).thenReturn(houseMemberToCreateThatAlreadyExists);
 
-        ChorifyException exception = assertThrows(ChorifyException.class, () -> houseMemberService.createHouseMember(houseMemberToCreateThatAlreadyExists));
+        ChorifyException exception = assertThrows(ChorifyException.class, () -> houseMemberService.createHouseMember(houseMemberToCreateThatAlreadyExists, id));
         
         assertTrue(exception.getMessage().equals("House Member with email address " + email + " already exists."));
         assertTrue(exception.getStatus() == HttpStatus.CONFLICT);
@@ -74,6 +82,7 @@ public class HouseMemberServiceTests {
     @Test
     public void testCreateHouseMemberWithInvalidPhoneNumber() {
 
+        int id = 6;
         String name = "Chris Vatos";
         String email = "cvatos@gmail.com";
         String phoneNumber = "514-654-9873";
@@ -82,7 +91,7 @@ public class HouseMemberServiceTests {
 
         Mockito.when(houseMemberRepository.findByPhoneNumber(phoneNumber)).thenReturn(houseMemberToCreateThatAlreadyExists);
 
-        ChorifyException exception = assertThrows(ChorifyException.class, () -> houseMemberService.createHouseMember(houseMemberToCreateThatAlreadyExists));
+        ChorifyException exception = assertThrows(ChorifyException.class, () -> houseMemberService.createHouseMember(houseMemberToCreateThatAlreadyExists, id));
         
         assertTrue(exception.getMessage().equals("House Member with phone number " + phoneNumber + " already exists."));
         assertTrue(exception.getStatus() == HttpStatus.CONFLICT);
@@ -305,10 +314,5 @@ public class HouseMemberServiceTests {
         assertTrue(exception.getMessage().equals("House Member with id " + id + " does not exist."));
         assertTrue(exception.getStatus() == HttpStatus.NOT_FOUND);
     }
-
-    
-
-
-
 
 }

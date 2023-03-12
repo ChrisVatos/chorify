@@ -2,6 +2,7 @@ package com.cvatos.chorifybackend.model;
 
 import java.util.Set;
 
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;

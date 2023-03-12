@@ -2,6 +2,7 @@ package com.cvatos.chorifybackend.model;
 
 import java.util.Set;
 
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
