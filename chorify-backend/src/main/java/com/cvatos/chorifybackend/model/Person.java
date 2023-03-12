@@ -22,6 +22,16 @@ public class Person {
     @Column(name = "email", nullable = false)
     private String emailAddress;
 
+    public Person() {
+
+    }
+
+    public Person(String name, String phoneNumber, String emailAddress) {
+        this.name = name;
+        this.phoneNumber = phoneNumber;
+        this.emailAddress = emailAddress;
+    }
+
     public int getId() {
         return this.id;
     }

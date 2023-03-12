@@ -8,6 +8,7 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
@@ -22,7 +23,7 @@ public class HouseController {
     @Autowired
     private HouseService houseService;
 
-    @PutMapping("/houses/newHouse")
+    @PostMapping("/houses/newHouse")
     public ResponseEntity<HouseResponseDto> createNewHouse(@Validated @RequestBody HouseRequestDto houseRequest) {
 
         // Create house object using data from the HouseRequestDto
@@ -90,10 +91,10 @@ public class HouseController {
     }
 
     @DeleteMapping("houses/delete/{id}")
-    public ResponseEntity<Void> deleteHouseById(@PathVariable int id) {
+    public ResponseEntity<String> deleteHouseById(@PathVariable int id) {
 
         houseService.deleteHouse(id);
 
-        return new ResponseEntity<Void>(HttpStatus.OK);
+        return new ResponseEntity<String>("House with id " + id + " was deleted", HttpStatus.OK);
     }
 }

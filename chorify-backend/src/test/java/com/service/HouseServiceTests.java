@@ -160,7 +160,6 @@ public class HouseServiceTests {
         Mockito.when(houseRepository.findById(id)).thenReturn(null);
 
         ChorifyException exception = assertThrows(ChorifyException.class, () -> houseService.updateHouseName(id, newHouseName));
-        // Mockito.when(houseRepository.save(Mockito.any(House.class))).thenReturn(oldHouseNewName);
 
         assertTrue(exception.getMessage().equals("House with ID of " + id + " does not exist."));
         assertTrue(exception.getStatus() == HttpStatus.NOT_FOUND);

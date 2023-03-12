@@ -20,6 +20,14 @@ public class HouseManager extends Person {
     @Enumerated(EnumType.STRING)
     private HouseManagerType houseManagerType;
 
+    public HouseManager(String name, String phoneNumber, String emailAddress, HouseManagerType houseManagerType ) {
+        super(name, phoneNumber, emailAddress);
+        this.houseManagerType = houseManagerType;
+     }
+
+    public HouseManager() {
+    }
+
     @ManyToOne
     private House house;
 
