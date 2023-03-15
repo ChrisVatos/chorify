@@ -23,6 +23,9 @@ public class HouseMemberService {
     @Autowired
     private HouseRepository houseRepository;
 
+    @Autowired
+    private HouseService houseService;
+
     @Transactional
     public HouseMember createHouseMember(HouseMember houseMemberToCreate, int houseID) {
 
@@ -32,6 +35,13 @@ public class HouseMemberService {
             throw new ChorifyException("House Member with phone number " + houseMemberToCreate.getPhoneNumber() + " already exists." , HttpStatus.CONFLICT);
         } else if(houseRepository.findById(houseID) == null) {
             throw new ChorifyException("House with id " + houseID + " does not exist." , HttpStatus.BAD_REQUEST);
+        }
+
+        int numberOfAllowedMembers = houseRepository.findById(houseID).getNumberOfMembers();
+        int numberOfExistingMembers = houseMemberRepository.findByHouse(houseRepository.findById(houseID)).size();
+
+        if(numberOfExistingMembers == numberOfAllowedMembers) {
+            houseService.incrementNumberOfHouseMembers(houseID);
         }
     
         houseMemberToCreate.setHouse(houseRepository.findById(houseID));
@@ -65,7 +75,7 @@ public class HouseMemberService {
         List<HouseMember> houseMembers = houseMemberRepository.findByHouse(houseToFindHouseMembersFor);
 
         if(houseMembers.size() == 0) {
-            throw new ChorifyException("No house members exist for this house." , HttpStatus.NOT_FOUND);
+            throw new ChorifyException("No house members exist for house with id " + id + "." , HttpStatus.NOT_FOUND);
         }
 
         return houseMembers;
@@ -128,6 +138,8 @@ public class HouseMemberService {
             throw new ChorifyException("House Member with id " + id + " does not exist." , HttpStatus.NOT_FOUND);
         }
 
+        int houseId = houseMemberToDelete.getHouse().getId();
+        houseService.decrementNumberOfHouseMembers(houseId);
         houseMemberRepository.deleteById(id);
     }
 }

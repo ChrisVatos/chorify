@@ -81,6 +81,20 @@ public class HouseService {
     }
 
     @Transactional
+    public House decrementNumberOfHouseMembers(int id) {
+        
+        House houseToUpdate = houseReposiory.findById(id);
+
+        if(houseToUpdate == null) {
+            throw new ChorifyException("House with ID of " + id + " does not exist.", HttpStatus.NOT_FOUND);
+        }
+
+        int newNumberOfMembers = houseToUpdate.getNumberOfMembers() - 1;
+        houseToUpdate.setNumberOfMembers(newNumberOfMembers);
+        return houseReposiory.save(houseToUpdate);
+    }
+
+    @Transactional
     public void deleteHouse(int id) {
 
         House houseToDelete = houseReposiory.findById(id);

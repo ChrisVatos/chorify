@@ -1,7 +1,5 @@
 package com.dto;
 
-import com.cvatos.chorifybackend.model.House;
-
 import io.micrometer.common.lang.NonNull;
 
 public class HouseMemberRequestDto {
