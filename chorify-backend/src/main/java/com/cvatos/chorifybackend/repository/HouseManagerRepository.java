@@ -14,6 +14,7 @@ public interface HouseManagerRepository extends CrudRepository<HouseManager, Int
 
     HouseManager findById(int id);
     HouseManager findByEmailAddress(String emailAddress);
+    HouseManager findByPhoneNumber(String emailAddress);
     HouseManager findByName(String name);
     List<HouseManager> findAllByHouseManagerType(HouseManagerType houseManagerType);
     List<HouseManager> findByHouse(House house);

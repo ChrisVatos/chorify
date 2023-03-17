@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import com.cvatos.chorifybackend.exception.ChorifyException;
 import com.cvatos.chorifybackend.model.House;
 import com.cvatos.chorifybackend.model.HouseMember;
+import com.cvatos.chorifybackend.repository.HouseManagerRepository;
 import com.cvatos.chorifybackend.repository.HouseMemberRepository;
 import com.cvatos.chorifybackend.repository.HouseRepository;
 
@@ -19,6 +20,9 @@ public class HouseMemberService {
 
     @Autowired
     private HouseMemberRepository houseMemberRepository;
+
+    @Autowired
+    private HouseManagerRepository houseManagerRepository;
 
     @Autowired
     private HouseRepository houseRepository;
@@ -38,9 +42,11 @@ public class HouseMemberService {
         }
 
         int numberOfAllowedMembers = houseRepository.findById(houseID).getNumberOfMembers();
-        int numberOfExistingMembers = houseMemberRepository.findByHouse(houseRepository.findById(houseID)).size();
+        int numberOfExistingHouseMembers = houseMemberRepository.findByHouse(houseRepository.findById(houseID)).size();
+        int numberOfExistingHouseManagers = houseManagerRepository.findByHouse(houseRepository.findById(houseID)).size();
+        int totalNumberOfMembers = numberOfExistingHouseMembers + numberOfExistingHouseManagers;
 
-        if(numberOfExistingMembers == numberOfAllowedMembers) {
+        if(totalNumberOfMembers == numberOfAllowedMembers) {
             houseService.incrementNumberOfHouseMembers(houseID);
         }
     
