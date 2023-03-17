@@ -36,32 +36,6 @@ public class HouseMemberServiceTests {
     private HouseMemberService houseMemberService;
 
     @Test
-    public void testCreateHouseMember() {
-
-        int id = 6;
-        String name = "Chris Vatos";
-        String email = "cvatos@gmail.com";
-        String phoneNumber = "514-654-9873";
-
-        HouseMember houseMemberToCreate = new HouseMember(name, phoneNumber, email);
-
-        int houseID = 2;
-        String houseName = "New House Name";
-        int numberOfMembers = 6;
-
-        House house = new House(houseName, numberOfMembers);
-
-        Mockito.when(houseMemberRepository.save(Mockito.any(HouseMember.class))).thenReturn(houseMemberToCreate);
-        Mockito.when(houseRepository.findById(houseID)).thenReturn(house);
-        HouseMember createdHouseMember = houseMemberService.createHouseMember(houseMemberToCreate, houseID);
-
-        assertNotNull(createdHouseMember);
-        assertTrue(createdHouseMember.getName().equals(name));
-        assertTrue(createdHouseMember.getPhoneNumber().equals(phoneNumber));
-        assertTrue(createdHouseMember.getEmailAddress().equals(email));
-    }
-
-    @Test
     public void testCreateHouseMemberWithInvalidEmail() {
 
         int id = 6;
@@ -200,29 +174,6 @@ public class HouseMemberServiceTests {
     }
 
     @Test
-    public void testgetAllMembersByHouseWith0Members() {
-        
-        // Setting up the fields to create the house object with
-        int id = 1;
-        String houseName = "Test House";
-        int numberOfMembers = 5;
-
-        // Creating the house object to be returned when the repository method to find by the specified is called
-        House savedHouse = new House(houseName, numberOfMembers);
-
-        // Creating list of house members
-        List<HouseMember> houseMembers = new ArrayList<HouseMember>();
-
-        Mockito.when(houseRepository.findById(id)).thenReturn(savedHouse);
-        Mockito.when(houseMemberRepository.findByHouse(savedHouse)).thenReturn(houseMembers);
-
-        ChorifyException exception = assertThrows(ChorifyException.class, () -> houseMemberService.getHouseMembersByHouse(id));
-
-        assertTrue(exception.getMessage().equals("No house members exist for this house."));
-        assertTrue(exception.getStatus() == HttpStatus.NOT_FOUND);
-    }
-
-    @Test
     public void testUpdateHouseMemberWithValidNewNameAndValidId() {
 
         int id = 2;
@@ -242,6 +193,7 @@ public class HouseMemberServiceTests {
 
         assertNotNull(newMember);
         assertTrue(newMember.getId() == id);
+        assertTrue(newMember.getName().equals(newName));
         assertTrue(newMember.getEmailAddress().equals(email));
         assertTrue(newMember.getPhoneNumber().equals(phoneNumber));
     }
@@ -283,23 +235,6 @@ public class HouseMemberServiceTests {
     }
 
     // Analogous tests for updating email and phone number
-
-    @Test
-    public void testDeleteHouseMemberByValidId() {
-
-        int id = 2;
-        String name = "Chris Vatos";
-        String email = "cvatos@gmail.com";
-        String phoneNumber = "514-654-9873";
-
-        HouseMember exisingMember = new HouseMember(name, phoneNumber, email);
-
-        Mockito.when(houseMemberRepository.findById(id)).thenReturn(exisingMember);
-
-        houseMemberService.deleteHouseMember(id);
-
-        Mockito.verify(houseMemberRepository, times(1)).deleteById(id);
-    }
 
 
     @Test

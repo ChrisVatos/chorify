@@ -93,7 +93,7 @@ public class HouseManagerService {
     public List<HouseManager> getHouseManagersByType(HouseManagerType houseManagerType, int houseID) {
 
         List<HouseManager> houseManagers = houseManagerRepository.findAllByHouseManagerType(houseManagerType);
-        List<HouseManager> houseManagersByHouse = houseManagers.stream().filter(manager -> manager.getId() == houseID).collect(Collectors.toList());
+        List<HouseManager> houseManagersByHouse = houseManagers.stream().filter(manager -> manager.getHouse().getId() == houseID).collect(Collectors.toList());
 
         if(houseManagersByHouse.size() == 0) {
             throw new ChorifyException("No house managers exist for house with id " + houseID + " that are of the specified type." , HttpStatus.NOT_FOUND);
@@ -163,9 +163,4 @@ public class HouseManagerService {
         houseService.decrementNumberOfHouseMembers(houseId);
         houseManagerRepository.deleteById(id);
     }
-
-
-
-
-    
 }
