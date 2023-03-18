@@ -22,7 +22,7 @@ public class HouseManager extends Person {
     @ManyToOne
     private House house;
 
-    @OneToMany(mappedBy = "choreAssigner")
+    @OneToMany(mappedBy = "choreAssigner", cascade = CascadeType.REMOVE, orphanRemoval = true)
     private Set<Chore> chores;
 
     public HouseManager(String name, String phoneNumber, String emailAddress, HouseManagerType houseManagerType ) {

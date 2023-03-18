@@ -2,7 +2,7 @@ package com.cvatos.chorifybackend.model;
 
 import java.util.Set;
 
-
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
@@ -15,7 +15,7 @@ public class HouseMember extends Person {
     @ManyToOne
     private House house;
 
-    @OneToMany(mappedBy = "choreAssignee")
+    @OneToMany(mappedBy = "choreAssignee", cascade = CascadeType.REMOVE, orphanRemoval = true)
     private Set<Chore> chores;
 
 
