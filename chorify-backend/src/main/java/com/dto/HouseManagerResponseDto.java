@@ -13,14 +13,16 @@ public class HouseManagerResponseDto {
     private String emailAddress;
     private HouseManagerType houseManagerType;
     private Set<Chore> chores;
+    private int houseID;
 
-    public HouseManagerResponseDto(int id, String name, String phoneNumber, String emailAddress, HouseManagerType houseManagerType, Set<Chore> chores) {
+    public HouseManagerResponseDto(int id, String name, String phoneNumber, String emailAddress, HouseManagerType houseManagerType, Set<Chore> chores, int houseID) {
         this.id = id;
         this.name = name;
         this.phoneNumber = phoneNumber;
         this.emailAddress = emailAddress;
         this.houseManagerType = houseManagerType;
         this.chores = chores;
+        this.houseID = houseID;
     }
 
     public int getId() {
@@ -47,4 +49,7 @@ public class HouseManagerResponseDto {
         return this.chores;
     }
 
+    public int getHouseID() {
+        return this.houseID;
+    }
 }

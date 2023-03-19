@@ -44,7 +44,8 @@ public class HouseManagerController {
             createdManager.getPhoneNumber(),
             createdManager.getEmailAddress(),
             createdManager.getHouseManagerType(),
-            createdManager.getChores()
+            createdManager.getChores(),
+            createdManager.getHouse().getId()
         );
 
         return new ResponseEntity<HouseManagerResponseDto>(createdManagerResponse, HttpStatus.CREATED);
@@ -61,7 +62,8 @@ public class HouseManagerController {
             retrievedManager.getPhoneNumber(),
             retrievedManager.getEmailAddress(),
             retrievedManager.getHouseManagerType(),
-            retrievedManager.getChores()
+            retrievedManager.getChores(),
+            retrievedManager.getHouse().getId()
         );
 
         return new ResponseEntity<HouseManagerResponseDto>(retrievedManagerResponse, HttpStatus.OK);
@@ -78,7 +80,8 @@ public class HouseManagerController {
             retrievedManager.getPhoneNumber(),
             retrievedManager.getEmailAddress(),
             retrievedManager.getHouseManagerType(),
-            retrievedManager.getChores()
+            retrievedManager.getChores(),
+            retrievedManager.getHouse().getId()
         );
 
         return new ResponseEntity<HouseManagerResponseDto>(retrievedManagerResponse, HttpStatus.OK);
@@ -97,7 +100,8 @@ public class HouseManagerController {
                 manager.getPhoneNumber(),
                 manager.getEmailAddress(),
                 manager.getHouseManagerType(),
-                manager.getChores()
+                manager.getChores(),
+                manager.getHouse().getId()
             );
 
             houseManagersByHouseResponse.add(currentManagerResponse);
@@ -119,7 +123,8 @@ public class HouseManagerController {
                 manager.getPhoneNumber(),
                 manager.getEmailAddress(),
                 manager.getHouseManagerType(),
-                manager.getChores()
+                manager.getChores(),
+                manager.getHouse().getId()
             );
 
             houseManagersByHouseResponse.add(currentManagerResponse);
@@ -139,7 +144,9 @@ public class HouseManagerController {
             updatedManager.getPhoneNumber(),
             updatedManager.getEmailAddress(),
             updatedManager.getHouseManagerType(),
-            updatedManager.getChores()
+            updatedManager.getChores(),
+            updatedManager.getHouse().getId()
+            
         );
 
         return new ResponseEntity<HouseManagerResponseDto>(updatedManagerResponse, HttpStatus.OK);
@@ -156,7 +163,8 @@ public class HouseManagerController {
             updatedManager.getPhoneNumber(),
             updatedManager.getEmailAddress(),
             updatedManager.getHouseManagerType(),
-            updatedManager.getChores()
+            updatedManager.getChores(),
+            updatedManager.getHouse().getId()
         );
 
         return new ResponseEntity<HouseManagerResponseDto>(updatedManagerResponse, HttpStatus.OK);
@@ -173,7 +181,8 @@ public class HouseManagerController {
             updatedManager.getPhoneNumber(),
             updatedManager.getEmailAddress(),
             updatedManager.getHouseManagerType(),
-            updatedManager.getChores()
+            updatedManager.getChores(),
+            updatedManager.getHouse().getId()
         );
 
         return new ResponseEntity<HouseManagerResponseDto>(updatedManagerResponse, HttpStatus.OK);

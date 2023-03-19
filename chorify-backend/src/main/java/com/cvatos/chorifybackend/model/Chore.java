@@ -49,6 +49,16 @@ public class Chore {
     @JoinColumn(name = "house_id", referencedColumnName = "id", nullable = true)
     private House house;
 
+
+    public Chore(int id, String choreName, String choreDescription, int difficultyEstimator, Date dueDate, ChoreStatus choreStatus) {
+        this.id = id;
+        this.choreName = choreName;
+        this.choreDescription = choreDescription;
+        this.difficultyEstimator = difficultyEstimator;
+        this.dueDate = dueDate;
+        this.choreStatus = choreStatus;
+    }
+    
     public House getHouse() {
         return this.house;
     }

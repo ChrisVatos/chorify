@@ -44,7 +44,8 @@ public class HouseMemberController {
             createdMember.getName(),
             createdMember.getPhoneNumber(),
             createdMember.getEmailAddress(),
-            createdMember.getChores()
+            createdMember.getChores(),
+            createdMember.getHouse().getId()
         );
 
         return new ResponseEntity<HouseMemberResponseDto>(createdMemberResponse, HttpStatus.CREATED);
@@ -60,7 +61,8 @@ public class HouseMemberController {
             retrievedMember.getName(),
             retrievedMember.getPhoneNumber(),
             retrievedMember.getEmailAddress(),
-            retrievedMember.getChores()
+            retrievedMember.getChores(),
+            retrievedMember.getHouse().getId()
         );
 
         return new ResponseEntity<HouseMemberResponseDto>(retrievedMemberResponse, HttpStatus.OK);
@@ -76,7 +78,8 @@ public class HouseMemberController {
             retrievedMember.getName(),
             retrievedMember.getPhoneNumber(),
             retrievedMember.getEmailAddress(),
-            retrievedMember.getChores()
+            retrievedMember.getChores(),
+            retrievedMember.getHouse().getId()
         );
 
         return new ResponseEntity<HouseMemberResponseDto>(retrievedMemberResponse, HttpStatus.OK);
@@ -94,7 +97,8 @@ public class HouseMemberController {
                 member.getName(),
                 member.getPhoneNumber(),
                 member.getEmailAddress(),
-                member.getChores()
+                member.getChores(),
+                member.getHouse().getId()
             );
 
             houseMembersResponseDto.add(memberInHouseResponse);
@@ -113,7 +117,8 @@ public class HouseMemberController {
             updatedMember.getName(),
             updatedMember.getPhoneNumber(),
             updatedMember.getEmailAddress(),
-            updatedMember.getChores()
+            updatedMember.getChores(),
+            updatedMember.getHouse().getId()
         );
 
         return new ResponseEntity<HouseMemberResponseDto>(updatedMemberResponse, HttpStatus.OK);
@@ -129,7 +134,8 @@ public class HouseMemberController {
             updatedMember.getName(),
             updatedMember.getPhoneNumber(),
             updatedMember.getEmailAddress(),
-            updatedMember.getChores()
+            updatedMember.getChores(),
+            updatedMember.getHouse().getId()
         );
 
         return new ResponseEntity<HouseMemberResponseDto>(updatedMemberResponse, HttpStatus.OK);
@@ -145,7 +151,8 @@ public class HouseMemberController {
             updatedMember.getName(),
             updatedMember.getPhoneNumber(),
             updatedMember.getEmailAddress(),
-            updatedMember.getChores()
+            updatedMember.getChores(),
+            updatedMember.getHouse().getId()
         );
 
         return new ResponseEntity<HouseMemberResponseDto>(updatedMemberResponse, HttpStatus.OK);

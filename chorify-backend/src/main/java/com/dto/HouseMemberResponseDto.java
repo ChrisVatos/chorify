@@ -12,14 +12,16 @@ public class HouseMemberResponseDto {
     private String phoneNumber;
     private String emailAddress;
     private Set<Chore> chores;
+    private int houseID;
 
 
-    public HouseMemberResponseDto(int id, String name, String phoneNumber, String emailAddress, Set<Chore> chores) {
+    public HouseMemberResponseDto(int id, String name, String phoneNumber, String emailAddress, Set<Chore> chores, int houseID) {
         this.id = id;
         this.name = name;
         this.phoneNumber = phoneNumber;
         this.emailAddress = emailAddress;
         this.chores = chores;
+        this.houseID = houseID;
     }
 
     // Getters (No setters to avoid modifying the data retrieved from backend)
@@ -42,4 +44,8 @@ public class HouseMemberResponseDto {
     public Set<Chore> getChores() {
         return this.chores;
     } 
+
+    public int getHouseID() {
+        return this.houseID;
+    }
 }
