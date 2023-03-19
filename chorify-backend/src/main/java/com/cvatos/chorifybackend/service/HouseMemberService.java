@@ -91,12 +91,9 @@ public class HouseMemberService {
     public HouseMember updateHouseMemberName(int id, String newName) {
         
         HouseMember houseMemberToUpdate = houseMemberRepository.findById(id);
-        HouseMember houseMemberWithNewNameExists = houseMemberRepository.findByName(newName);
 
         if(houseMemberToUpdate == null) {
             throw new ChorifyException("House Member with id " + id + " does not exist." , HttpStatus.NOT_FOUND);
-        } else if(houseMemberWithNewNameExists != null) {
-            throw new ChorifyException("House Member with name " + newName + " already exsists." , HttpStatus.CONFLICT);
         }
 
         houseMemberToUpdate.setName(newName);

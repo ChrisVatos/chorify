@@ -106,13 +106,10 @@ public class HouseManagerService {
     public HouseManager updateHouseManagerName(int id, String newName) {
         
         HouseManager houseManagerToUpdate = houseManagerRepository.findById(id);
-        HouseManager houseManagerWithNewNameExists = houseManagerRepository.findByName(newName);
 
         if(houseManagerToUpdate == null) {
             throw new ChorifyException("House Manager with id " + id + " does not exist." , HttpStatus.NOT_FOUND);
-        } else if(houseManagerWithNewNameExists != null) {
-            throw new ChorifyException("House Manager with name " + newName + " already exsists." , HttpStatus.CONFLICT);
-        }
+        } 
 
         houseManagerToUpdate.setName(newName);
         return houseManagerRepository.save(houseManagerToUpdate);
@@ -127,7 +124,7 @@ public class HouseManagerService {
         if(houseManagerToUpdate == null) {
             throw new ChorifyException("House Manager with id " + id + " does not exist." , HttpStatus.NOT_FOUND);
         } else if(houseManagerWithNewEmailExists != null) {
-            throw new ChorifyException("House Manager with name " + newEmail + " already exsists." , HttpStatus.CONFLICT);
+            throw new ChorifyException("House Manager with email " + newEmail + " already exsists." , HttpStatus.CONFLICT);
         }
 
         houseManagerToUpdate.setEmailAddress(newEmail);
@@ -143,7 +140,7 @@ public class HouseManagerService {
         if(houseManagerToUpdate == null) {
             throw new ChorifyException("House Manager with id " + id + " does not exist." , HttpStatus.NOT_FOUND);
         } else if(houseManagerWithNewNumberExists != null) {
-            throw new ChorifyException("House Manager with name " + newNumber + " already exsists." , HttpStatus.CONFLICT);
+            throw new ChorifyException("House Manager with number " + newNumber + " already exsists." , HttpStatus.CONFLICT);
         }
 
         houseManagerToUpdate.setPhoneNumber(newNumber);

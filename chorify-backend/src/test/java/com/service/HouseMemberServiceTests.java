@@ -198,27 +198,6 @@ public class HouseMemberServiceTests {
         assertTrue(newMember.getPhoneNumber().equals(phoneNumber));
     }
 
-    @Test
-    public void testUupdateHouseMemberWithInvalidNewNameAndValidId() {
-
-        int id = 2;
-        String name = "Chris Vatos";
-        String email = "cvatos@gmail.com";
-        String phoneNumber = "514-654-9873";
-        String newName = "Bob";
-     
-        HouseMember oldMember = new HouseMember(name, phoneNumber, email);
-        HouseMember memberWithExistingNewName = new HouseMember(newName, phoneNumber, email);
-      
-
-        Mockito.when(houseMemberRepository.findById(id)).thenReturn(oldMember);
-        Mockito.when(houseMemberRepository.findByName(newName)).thenReturn(memberWithExistingNewName);
-
-        ChorifyException exception = assertThrows(ChorifyException.class, () -> houseMemberService.updateHouseMemberName(id, newName));
-
-        assertTrue(exception.getMessage().equals("House Member with name " + newName + " already exsists."));
-        assertTrue(exception.getStatus() == HttpStatus.CONFLICT);
-    }
 
     @Test
     public void testUpdateHouseMemberWithValidNewNameAndInvalidId() {

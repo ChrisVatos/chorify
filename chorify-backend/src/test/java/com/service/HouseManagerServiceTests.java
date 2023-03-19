@@ -331,29 +331,6 @@ public class HouseManagerServiceTests {
     }
 
     @Test
-    public void testUupdateHouseManagerWithInvalidNewNameAndValidId() {
-
-        int id = 2;
-        String name = "Chris Vatos";
-        String email = "cvatos@gmail.com";
-        String phoneNumber = "514-654-9873";
-        String newName = "Bob";
-        HouseManagerType type = HouseManagerType.parent;
-
-        HouseManager managerToUpdate = new HouseManager(name, phoneNumber, email, type);
-        HouseManager managerWithExistingNewName = new HouseManager(newName, phoneNumber, email, type);
-      
-
-        Mockito.when(houseManagerRepository.findById(id)).thenReturn(managerToUpdate);
-        Mockito.when(houseManagerRepository.findByName(newName)).thenReturn(managerWithExistingNewName);
-
-        ChorifyException exception = assertThrows(ChorifyException.class, () -> houseManagerService.updateHouseManagerName(id, newName));
-
-        assertTrue(exception.getMessage().equals("House Manager with name " + newName + " already exsists."));
-        assertTrue(exception.getStatus() == HttpStatus.CONFLICT);
-    }
-
-    @Test
     public void testUpdateHouseManagerWithValidNewNameAndInvalidId() {
 
         int id = 2;

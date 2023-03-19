@@ -43,6 +43,7 @@ public class HouseManagerController {
             createdManager.getName(),
             createdManager.getPhoneNumber(),
             createdManager.getEmailAddress(),
+            createdManager.getHouseManagerType(),
             createdManager.getChores()
         );
 
@@ -59,6 +60,7 @@ public class HouseManagerController {
             retrievedManager.getName(),
             retrievedManager.getPhoneNumber(),
             retrievedManager.getEmailAddress(),
+            retrievedManager.getHouseManagerType(),
             retrievedManager.getChores()
         );
 
@@ -75,6 +77,7 @@ public class HouseManagerController {
             retrievedManager.getName(),
             retrievedManager.getPhoneNumber(),
             retrievedManager.getEmailAddress(),
+            retrievedManager.getHouseManagerType(),
             retrievedManager.getChores()
         );
 
@@ -93,6 +96,7 @@ public class HouseManagerController {
                 manager.getName(),
                 manager.getPhoneNumber(),
                 manager.getEmailAddress(),
+                manager.getHouseManagerType(),
                 manager.getChores()
             );
 
@@ -114,6 +118,7 @@ public class HouseManagerController {
                 manager.getName(),
                 manager.getPhoneNumber(),
                 manager.getEmailAddress(),
+                manager.getHouseManagerType(),
                 manager.getChores()
             );
 
@@ -133,6 +138,7 @@ public class HouseManagerController {
             updatedManager.getName(),
             updatedManager.getPhoneNumber(),
             updatedManager.getEmailAddress(),
+            updatedManager.getHouseManagerType(),
             updatedManager.getChores()
         );
 
@@ -149,6 +155,7 @@ public class HouseManagerController {
             updatedManager.getName(),
             updatedManager.getPhoneNumber(),
             updatedManager.getEmailAddress(),
+            updatedManager.getHouseManagerType(),
             updatedManager.getChores()
         );
 
@@ -165,6 +172,7 @@ public class HouseManagerController {
             updatedManager.getName(),
             updatedManager.getPhoneNumber(),
             updatedManager.getEmailAddress(),
+            updatedManager.getHouseManagerType(),
             updatedManager.getChores()
         );
 
