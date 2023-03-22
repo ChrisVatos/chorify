@@ -50,7 +50,11 @@ public class Chore {
     private House house;
 
 
-    public Chore(int id, String choreName, String choreDescription, int difficultyEstimator, Date dueDate, ChoreStatus choreStatus) {
+    public Chore() {
+
+    }
+    
+    public Chore(String choreName, String choreDescription, int difficultyEstimator, Date dueDate, ChoreStatus choreStatus) {
         this.id = id;
         this.choreName = choreName;
         this.choreDescription = choreDescription;
