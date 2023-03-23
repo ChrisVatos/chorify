@@ -401,11 +401,4 @@ public class ChoreController {
 
         return new ResponseEntity<String>("Chore with id " + id + " has been deleted.", HttpStatus.OK);
     }
-
-
-
-
-
-
- 
 }

@@ -8,9 +8,11 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
 import com.cvatos.chorifybackend.exception.ChorifyException;
+import com.cvatos.chorifybackend.model.Chore;
 import com.cvatos.chorifybackend.model.House;
 import com.cvatos.chorifybackend.model.HouseManager;
 import com.cvatos.chorifybackend.model.HouseManager.HouseManagerType;
+import com.cvatos.chorifybackend.repository.ChoreRepository;
 import com.cvatos.chorifybackend.repository.HouseManagerRepository;
 import com.cvatos.chorifybackend.repository.HouseMemberRepository;
 import com.cvatos.chorifybackend.repository.HouseRepository;
@@ -27,10 +29,16 @@ public class HouseManagerService {
     private HouseMemberRepository houseMemberRepository;
 
     @Autowired
+    private ChoreRepository choreRepository;
+
+    @Autowired
     private HouseRepository houseRepository;
 
     @Autowired
     private HouseService houseService;
+
+    @Autowired
+    private ChoreService choreService;
 
     @Transactional
     public HouseManager createHouseManager(HouseManager houseManagerToCreate, int houseID) {

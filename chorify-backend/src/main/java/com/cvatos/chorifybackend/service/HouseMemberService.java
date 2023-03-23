@@ -7,8 +7,10 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
 import com.cvatos.chorifybackend.exception.ChorifyException;
+import com.cvatos.chorifybackend.model.Chore;
 import com.cvatos.chorifybackend.model.House;
 import com.cvatos.chorifybackend.model.HouseMember;
+import com.cvatos.chorifybackend.repository.ChoreRepository;
 import com.cvatos.chorifybackend.repository.HouseManagerRepository;
 import com.cvatos.chorifybackend.repository.HouseMemberRepository;
 import com.cvatos.chorifybackend.repository.HouseRepository;
@@ -28,7 +30,13 @@ public class HouseMemberService {
     private HouseRepository houseRepository;
 
     @Autowired
+    private ChoreRepository choreRepository;
+
+    @Autowired
     private HouseService houseService;
+
+    @Autowired
+    private ChoreService choreService;
 
     @Transactional
     public HouseMember createHouseMember(HouseMember houseMemberToCreate, int houseID) {

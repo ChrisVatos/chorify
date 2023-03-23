@@ -11,6 +11,8 @@ import org.springframework.stereotype.Service;
 
 import com.cvatos.chorifybackend.exception.ChorifyException;
 import com.cvatos.chorifybackend.model.Chore;
+import com.cvatos.chorifybackend.model.HouseManager;
+import com.cvatos.chorifybackend.model.HouseMember;
 import com.cvatos.chorifybackend.model.Chore.ChoreStatus;
 import com.cvatos.chorifybackend.repository.ChoreRepository;
 import com.cvatos.chorifybackend.repository.HouseManagerRepository;
@@ -36,6 +38,21 @@ public class ChoreService {
 
     @Transactional
     public Chore createChore(Chore choreToCreate, int choreAssignerID, int choreAssigneeID, int houseID) {
+
+        HouseManager choreAssigner = houseManagerRepository.findById(choreAssignerID);
+        HouseMember choreAssignee = houseMemberRepository.findById(choreAssigneeID);
+
+        if(choreAssigner == null) {
+            throw new ChorifyException("Manager not found.", HttpStatus.NOT_FOUND);
+        }  
+
+        if(choreAssignee == null) {
+            throw new ChorifyException("Member not found.", HttpStatus.NOT_FOUND);
+        }
+
+        if(choreAssigner.getHouse().getId() != choreAssignee.getHouse().getId()) {
+            throw new ChorifyException("Manager and member not of the same house.", HttpStatus.CONFLICT);
+        }
 
         choreToCreate.setChoreAssigner(houseManagerRepository.findById(choreAssignerID));
         choreToCreate.setChoreAssignee(houseMemberRepository.findById(choreAssigneeID));
@@ -127,7 +144,13 @@ public class ChoreService {
     @Transactional
     public List<Chore> getChoresByAssigner(int choreAssignerID) {
 
-        List<Chore> choresByAssigner = choreRepository.findByChoreAssigner(houseManagerRepository.findById(choreAssignerID));
+        HouseManager choreAssigner = houseManagerRepository.findById(choreAssignerID);
+
+        if(choreAssigner == null) {
+            throw new ChorifyException("House manager does not exist.", HttpStatus.NOT_FOUND);
+        }
+
+        List<Chore> choresByAssigner = choreRepository.findByChoreAssigner(choreAssigner);
 
         if(choresByAssigner.size() == 0) {
             throw new ChorifyException("No chores exist that are assigned by " + houseManagerRepository.findById(choreAssignerID).getName(), HttpStatus.NOT_FOUND);
@@ -138,6 +161,12 @@ public class ChoreService {
 
     @Transactional
     public List<Chore> getChoresByAssignee(int choreAssigneeID) {
+
+        HouseMember choreAssignee = houseMemberRepository.findById(choreAssigneeID);
+
+        if(choreAssignee == null) {
+            throw new ChorifyException("House member does not exist.", HttpStatus.NOT_FOUND);
+        }
 
         List<Chore> choresByAssignee = choreRepository.findByChoreAssignee(houseMemberRepository.findById(choreAssigneeID));
 
@@ -228,10 +257,20 @@ public class ChoreService {
     @Transactional
     public Chore updateChoreAssigner(int choreID, int choreAssignerID) {
 
+        HouseManager choreAssigner = houseManagerRepository.findById(choreAssignerID);
+
+        if(choreAssigner == null) {
+            throw new ChorifyException("House manager does not exist.", HttpStatus.NOT_FOUND);
+        }
+
         Chore choreToUpdate = choreRepository.findById(choreID);
 
         if(choreToUpdate == null) {
             throw new ChorifyException("Chore does not exist.", HttpStatus.NOT_FOUND);
+        }
+
+        if(choreAssigner.getHouse().getId() != choreToUpdate.getHouse().getId()) {
+            throw new ChorifyException("Manager and member not of the same house.", HttpStatus.CONFLICT);
         }
 
         choreToUpdate.setChoreAssigner(houseManagerRepository.findById(choreAssignerID));
@@ -241,10 +280,20 @@ public class ChoreService {
     @Transactional
     public Chore updateChoreAssignee(int choreID, int choreAssigneeID) {
 
+        HouseMember choreAssignee = houseMemberRepository.findById(choreAssigneeID);
+
+        if(choreAssignee == null) {
+            throw new ChorifyException("House member does not exist.", HttpStatus.NOT_FOUND);
+        }
+
         Chore choreToUpdate = choreRepository.findById(choreID);
 
         if(choreToUpdate == null) {
             throw new ChorifyException("Chore does not exist.", HttpStatus.NOT_FOUND);
+        }
+
+        if(choreAssignee.getHouse().getId() != choreToUpdate.getHouse().getId()) {
+            throw new ChorifyException("Manager and member not of the same house.", HttpStatus.CONFLICT);
         }
 
         choreToUpdate.setChoreAssignee(houseMemberRepository.findById(choreAssigneeID));
