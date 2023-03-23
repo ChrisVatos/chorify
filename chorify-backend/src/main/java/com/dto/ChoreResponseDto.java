@@ -14,9 +14,10 @@ public class ChoreResponseDto {
     private Date dueDate;
     private String choreAssignerName;
     private String choreAssigneeName;
+    private int houseID;
     
 
-    public ChoreResponseDto(int id, String choreDesciption, String choreName, ChoreStatus choreStatus, int difficultyEstimator, Date dueDate, String choreAssignerName, String choreAssigneeName) {
+    public ChoreResponseDto(int id, String choreDesciption, String choreName, ChoreStatus choreStatus, int difficultyEstimator, Date dueDate, String choreAssignerName, String choreAssigneeName, int houseID) {
         this.id = id;
         this.choreDesciption = choreDesciption;
         this.choreName = choreName;
@@ -25,6 +26,7 @@ public class ChoreResponseDto {
         this.dueDate = dueDate;
         this.choreAssignerName = choreAssignerName;
         this.choreAssigneeName = choreAssigneeName;
+        this.houseID = houseID;
     }
 
     public int getId() {
@@ -57,5 +59,9 @@ public class ChoreResponseDto {
 
     public String getChoreAssigneeName() {
         return this.choreAssigneeName;
+    }
+
+    public int getHouseID() {
+        return this.houseID;
     }
 }
