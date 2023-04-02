@@ -1,3 +1,41 @@
-label {
+.member__form {
+    display: flex;
+    flex-direction: column;
+    width: 20%;
+    margin: 0 auto;
+    background-color:rgb(237, 237, 237);
+    border-radius: 12px;
+    padding: 1rem;
+}
+
+.name__input, .email__input, .phoneNumber__input, .houseID__input {
+    display: flex;
+    flex-direction: column;
+    margin-left: 0;
+    margin-right: auto;
+    padding: 1rem;
+}
+
+.name__label, .email__label, .phoneNumber__label, .houseID__label{
     color: black;
+    justify-content: start;
+    padding: 5px;
+}
+
+input {
+    width: 16rem;
+    height: 1.5rem;
+    font-size: inherit;
+    padding: 8px;
+    border-top: none;
+    border-right: 0px solid aqua;
+    border-left: 0px solid aqua;
+    border-bottom: 2px solid aqua;
+}
+
+.member__form__button {
+    width: 6rem;
+    height: 2.5rem;
+    border-radius: 20px;
+    margin: 0 auto;
 }

@@ -6,21 +6,27 @@ function MemberForm({method, event}) {
 
     const data = useActionData();
   return (
-    <Form action="/members/newMember" method={method}>
+    <Form className="test" action="/members/newMember" method={method}>
+        <div className="member__form">
 
-        <label>Name</label>
-        <input id="name" type="text" name="name" />
+            <div className="name__input">
+                <input id="name" type="text" name="name" placeholder="Name"/>
+            </div>
 
-        <label>Email</label>
-        <input id="email" type="text" name="email" />
+            <div className="email__input">
+                <input id="email" type="text" name="email" placeholder="Email"/>
+            </div>
 
-        <label>Phone Number</label>
-        <input id="phoneNumber" type="text" name="phoneNumber" />
+            <div className="phoneNumber__input">
+                <input id="phoneNumber" type="text" name="phoneNumber" placeholder="Phone Number"/>
+            </div>
 
-        <label>House ID</label>
-        <input id="houseID" type="number" name="houseID" />
+            <div className="houseID__input">
+                <input id="houseID" type="number" name="houseID" placeholder="HouseID"/>
+            </div>
 
-        <button type="submit">Submit</button>
+            <button className="member__form__button" type="submit">Add Member</button>
+        </div>
 
         {data && data.error && <p>{data.error}</p>}
     </Form>
@@ -68,19 +74,5 @@ export async function action({request, params}) {
         // handle error
         console.error('Error:', error.message);
         // display error message to user
-      });;
-
-
-
-
-    // if(response.status === 201) {
-    //     return redirect("/members")
-    // }
-
-    // if(response.status !== 201) {
-    //     console.log(response.body);
-    //     return {error: response.body.message}
-    // }
-    
-    
+      });    
 }
