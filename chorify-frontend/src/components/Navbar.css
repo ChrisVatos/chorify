@@ -1,0 +1,33 @@
+.navbar {
+    background-color: black;
+    padding: 0;
+    margin: 0;
+}
+
+.navbar__list  {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    color: white;
+    padding: 0;
+    margin: 0;
+}
+ 
+
+.navbar__links a {
+    margin: 20px;
+    text-decoration: none;
+    color: white
+}
+
+
+.navbar__links a.active {
+    padding-bottom: 8px;
+    border-bottom: 2px solid #2df0dc;
+}
+
+.navbar__app__name {
+    margin-right: 3.5rem;
+}
+

@@ -4,19 +4,35 @@ import './Navbar.css'
 
 function Navbar() {
   return (
-    <nav className="navbar" >
-      <ul>
-        <NavLink to="/chores">
-          Chores
-        </NavLink>
+    <nav className="navbar">
+      <ul className="navbar__list">
+        <div className="navbar__links">
+          <NavLink 
+            to="/chores"  
+            className={({ isActive }) =>
+              isActive ? "active" : undefined
+          }>
+            Chores
+          </NavLink>
 
-        <NavLink to="/members">
-          House Members
-        </NavLink>
+          <NavLink 
+            to="/members" 
+            className={({ isActive }) =>
+                  isActive ? "active" : undefined
+          }>
+            House Members
+          </NavLink>
 
-        <NavLink to="/managers">
-        House Managers
-        </NavLink>
+          <NavLink 
+            to="/managers" 
+            className={({ isActive }) =>
+              isActive ? "active" : undefined
+          }>
+          House Managers
+          </NavLink>
+        </div>
+
+        <h3 className="navbar__app__name">Chorify</h3>
       </ul>
     </nav>
   );
