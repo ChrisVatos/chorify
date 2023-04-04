@@ -1,0 +1,37 @@
+.main__houseMember__card {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-evenly;
+    border: 2px solid #2df0dc;
+    margin: 0 auto;
+    margin-bottom: 2rem;
+    background-color: aliceblue;
+    border-radius: 6px;
+    box-shadow: -8px 10px 6px rgb(164, 164, 164);
+    width: 50%;
+}
+
+.main__houseMember__card li {
+    list-style-type: none
+}
+
+.houseMember__ID__section, .houseMember__name__section, .houseMember__email__section, .houseMember__phoneNumber__section {
+    display: flex;
+    flex-direction: column;
+}
+
+.houseMember__ID__section h3, .houseMember__name__section h3, .houseMember__email__section h3, .houseMember__phoneNumber__section h3 {
+    margin: 0 auto;
+    margin-bottom: 1rem;
+    margin-top: 1rem;
+}
+
+.houseMember__ID__section h4, .houseMember__name__section h4, .houseMember__email__section h4, .houseMember__phoneNumber__section h4 {
+    margin: 0 auto;
+    margin-bottom: 1rem;
+    margin-top: 0.5rem;
+    font-weight: 400;
+    font-style: italic;
+}
+

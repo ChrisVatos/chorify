@@ -1,5 +1,7 @@
 import React from 'react'
 import { NavLink, useLoaderData } from 'react-router-dom';
+import HouseMemberCard from '../components/HouseMemberCard';
+import './HouseMembers.css'
 
 function HouseMembers() {
 
@@ -7,14 +9,19 @@ function HouseMembers() {
 
   return (
     <>
-      <div>
-        <NavLink to="newMember"><button>New Member</button></NavLink>
+      <div className="button__div">
+        <NavLink to="newMember"><button className="new__member__creation__button">New Member</button></NavLink>
+        <NavLink><button className="view__members__button">View Members</button></NavLink>
       </div>
-      <h1>House Members</h1>
       <ul>
       {members.map(member => 
-        <li>
-          <h4>{member.name}</h4>
+        <li className="house__member__card" style={{listStyleType: "none"}} key={member.id}>
+          <HouseMemberCard 
+            id={member.id}
+            name={member.name} 
+            email={member.emailAddress} 
+            phoneNumber={member.phoneNumber}>
+          </HouseMemberCard>
         </li>)}
       </ul>
     </>

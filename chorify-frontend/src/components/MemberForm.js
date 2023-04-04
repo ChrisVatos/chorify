@@ -7,7 +7,7 @@ function MemberForm({method, event, title}) {
   const data = useActionData();
 
   return (
-    <Form className="test" action="/members/newMember" method={method}>
+    <Form className="new__member__form" action="/members/newMember" method={method}>
         <div className="member__form">
 
             <h2 className="member__form__title">{title}</h2>

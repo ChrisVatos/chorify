@@ -1,0 +1,48 @@
+.house__member__headers {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-evenly;
+    width: 50%
+}
+
+.button__div {
+    text-align: center;
+    padding-top: 2rem;
+}
+
+.house__member__card {
+    transition: all 0.3s ease-in-out;
+}
+
+.house__member__card:hover {
+    transform: scale(1.05);
+}
+
+.new__member__creation__button, .view__members__button  {
+    width: 10%;
+    transition: all 0.1s ease-in-out;
+    height: 2.5rem;
+    border-radius: 20px;
+    margin-right: 40px;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    background-image: linear-gradient(to left, #2df0dc, #0093cd);
+    color: white;
+    font-weight: bold;
+    font-size: 16px;
+    box-shadow: -6px 8px 4px gray;
+    border: none;
+}
+
+.view__members__button {
+    margin-left: 40px;
+}
+
+.new__member__creation__button:hover, .view__members__button:hover {
+    opacity: 0.9;
+    color: black;
+    background-image: linear-gradient(to left, #2df0dc, #2df0dc);
+    transform: scale(1.1);
+}
+
