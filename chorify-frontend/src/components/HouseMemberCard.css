@@ -35,3 +35,30 @@
     font-style: italic;
 }
 
+.deleteMember__button {
+    border-radius: 10px;
+    background-color: white;
+    border: 2px solid red;
+    color: red;
+    font-size: 1.5rem;
+    transition: all 0.05s ease-in-out;
+}
+
+.deleteMember__button:hover {
+    transform: scale(1.2);
+}
+
+.editMember__button {
+    border-radius: 10px;
+    background-color: white;
+    border: 2px solid #0093cd;
+    color: #0093cd;
+    font-weight: bold;
+    font-size: 1.5rem;
+    transition: all 0.05s ease-in-out;
+}
+
+.editMember__button:hover {
+    transform: scale(1.2);
+}
+

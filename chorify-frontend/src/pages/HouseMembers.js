@@ -1,11 +1,36 @@
-import React from 'react'
-import { NavLink, useLoaderData } from 'react-router-dom';
+import { React, useState, useEffect } from 'react'
+import { NavLink, useLoaderData} from 'react-router-dom';
 import HouseMemberCard from '../components/HouseMemberCard';
 import './HouseMembers.css'
 
 function HouseMembers() {
 
-  const members = useLoaderData();
+  const [members, setMembers] = useState([]);
+  const memberData = useLoaderData();
+
+  useEffect(() => {
+    setMembers(memberData);
+  }, []);
+
+  const handleDeletion = async (idOfMemberToDelete) => {
+    
+    const response = await fetch('http://localhost:8080/members/delete/' + idOfMemberToDelete, {
+        method: 'DELETE', // Set the HTTP method to DELETE
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    });
+
+    if(!response.ok) {
+        const error = await response.json();
+        return ({errorMessage: error.message, status: error.status});
+    } else {
+      // Handle successful deletion, e.g., fetch updated member data
+      // and update state in parent component
+      const updatedMembers = members.filter(member => member.id != idOfMemberToDelete);
+      setMembers(updatedMembers); // Update members state with updated data
+    }
+}
 
   return (
     <>
@@ -13,14 +38,16 @@ function HouseMembers() {
         <NavLink to="newMember"><button className="new__member__creation__button">New Member</button></NavLink>
         <NavLink><button className="view__members__button">View Members</button></NavLink>
       </div>
+      {members && members.errorMessage && <h3 className="error__message__on__houseMembers__page">{members.errorMessage}</h3> }
       <ul>
-      {members.map(member => 
+      {!members.errorMessage && members.map(member => 
         <li className="house__member__card" style={{listStyleType: "none"}} key={member.id}>
           <HouseMemberCard 
             id={member.id}
             name={member.name} 
             email={member.emailAddress} 
-            phoneNumber={member.phoneNumber}>
+            phoneNumber={member.phoneNumber}
+            onDelete={handleDeletion}>
           </HouseMemberCard>
         </li>)}
       </ul>
@@ -34,7 +61,10 @@ export async function loader() {
   
   const response = await fetch('http://localhost:8080/members/house/280');
 
-  return response;
+  if (!response.ok) {
+    const error = await response.json();
+    return ({errorMessage: error.message, status: error.status});
+  } 
 
-  console.log(response);
+  return response;
 }

@@ -11,13 +11,7 @@
     padding-top: 2rem;
 }
 
-.house__member__card {
-    transition: all 0.3s ease-in-out;
-}
 
-.house__member__card:hover {
-    transform: scale(1.05);
-}
 
 .new__member__creation__button, .view__members__button  {
     width: 10%;
@@ -44,5 +38,16 @@
     color: black;
     background-image: linear-gradient(to left, #2df0dc, #2df0dc);
     transform: scale(1.1);
+}
+
+.error__message__on__houseMembers__page {
+    color: red;
+    background-color: rgb(247, 211, 211);
+    padding: 2rem;
+    width: 25%;
+    margin: 0 auto;
+    margin-top: 2rem;
+    border-radius: 4px;
+    box-shadow: -6px 10px 8px gray;
 }
 
