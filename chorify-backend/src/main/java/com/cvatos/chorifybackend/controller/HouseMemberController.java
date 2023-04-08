@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -19,6 +20,7 @@ import com.cvatos.chorifybackend.service.HouseMemberService;
 import com.dto.HouseMemberRequestDto;
 import com.dto.HouseMemberResponseDto;
 
+@CrossOrigin(origins = "http://localhost:3000/")
 @Controller
 public class HouseMemberController {
 
@@ -111,6 +113,23 @@ public class HouseMemberController {
     public ResponseEntity<HouseMemberResponseDto> updateName(@PathVariable int id, @RequestBody HouseMemberRequestDto houseMemberRequest) {
         
         HouseMember updatedMember = houseMemberService.updateHouseMemberName(id, houseMemberRequest.getName());
+
+        HouseMemberResponseDto updatedMemberResponse = new HouseMemberResponseDto(
+            updatedMember.getId(),
+            updatedMember.getName(),
+            updatedMember.getPhoneNumber(),
+            updatedMember.getEmailAddress(),
+            updatedMember.getChores(),
+            updatedMember.getHouse().getId()
+        );
+
+        return new ResponseEntity<HouseMemberResponseDto>(updatedMemberResponse, HttpStatus.OK);
+    }
+
+    @PutMapping("/members/update/{id}")
+    public ResponseEntity<HouseMemberResponseDto> updateMember(@PathVariable int id, @RequestBody HouseMemberRequestDto houseMemberRequest) {
+        
+        HouseMember updatedMember = houseMemberService.updateHouseMemberDetails(id, houseMemberRequest.getName(), houseMemberRequest.getEmailAddress(), houseMemberRequest.getPhoneNumber());
 
         HouseMemberResponseDto updatedMemberResponse = new HouseMemberResponseDto(
             updatedMember.getId(),

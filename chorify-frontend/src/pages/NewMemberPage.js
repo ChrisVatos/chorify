@@ -3,7 +3,7 @@ import MemberForm from '../components/MemberForm'
 
 function NewMemberPage() {
   return (
-    <MemberForm method="post" title="Create New House Member"/>  
+    <MemberForm method="POST" title="Create New House Member" isForEdit={false} currentData={null}/>  
   )
 }
 

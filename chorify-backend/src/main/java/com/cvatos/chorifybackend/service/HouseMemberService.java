@@ -141,6 +141,27 @@ public class HouseMemberService {
     }
 
     @Transactional 
+    public HouseMember updateHouseMemberDetails(int id, String newName, String newEmail, String newPhoneNumber ) {
+
+        HouseMember houseMemberToUpdate = houseMemberRepository.findById(id);
+        HouseMember houseMemberWithNewEmailExists = houseMemberRepository.findByEmailAddress(newEmail);
+        HouseMember houseMemberWithNewNumberExists = houseMemberRepository.findByPhoneNumber(newPhoneNumber);
+
+        if(houseMemberToUpdate == null) {
+            throw new ChorifyException("House Member with id " + id + " does not exist." , HttpStatus.NOT_FOUND);
+        } else if(houseMemberWithNewEmailExists != null && houseMemberWithNewEmailExists.getId() != houseMemberToUpdate.getId()) {
+            throw new ChorifyException("House Member with email " + newEmail + " already exsists." , HttpStatus.CONFLICT);
+        } else if(houseMemberWithNewNumberExists != null && houseMemberWithNewNumberExists.getId() != houseMemberToUpdate.getId()) {
+            throw new ChorifyException("House Member with phone number " + newPhoneNumber + " already exsists." , HttpStatus.CONFLICT);
+        }
+
+        houseMemberToUpdate.setName(newName);
+        houseMemberToUpdate.setEmailAddress(newEmail);
+        houseMemberToUpdate.setPhoneNumber(newPhoneNumber);
+        return houseMemberRepository.save(houseMemberToUpdate);
+    }
+
+    @Transactional 
     public void deleteHouseMember(int id) {
 
         HouseMember houseMemberToDelete = houseMemberRepository.findById(id);

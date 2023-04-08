@@ -4,6 +4,7 @@ import ChoresPage from "./pages/Chores";
 import HouseManagersPage from './pages/HouseManagers';
 import HouseMembersPage from './pages/HouseMembers';
 import NewMemberPage from "./pages/NewMemberPage";
+import HouseMembersLandingPage from "./pages/HouseMembersLandingPage";
 import { action as manipulateMemberAction } from './components/MemberForm'
 import { loader as loadMembers } from './pages/HouseMembers'
 import './App.css';
@@ -24,14 +25,18 @@ const router = createBrowserRouter([
         children: [
           {
             index: true,
-            element: <HouseMembersPage />,
-            loader: loadMembers
+            element: <HouseMembersLandingPage />,
           },
           { 
             path: "newMember",
             element: <NewMemberPage />,
             action: manipulateMemberAction
           }, 
+          {
+            path: "viewMembers",
+            element: <HouseMembersPage />,
+            loader: loadMembers
+          }
         ]
       },
 

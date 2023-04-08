@@ -34,10 +34,7 @@ function HouseMembers() {
 
   return (
     <>
-      <div className="button__div">
-        <NavLink to="newMember"><button className="new__member__creation__button">New Member</button></NavLink>
-        <NavLink><button className="view__members__button">View Members</button></NavLink>
-      </div>
+      <h1 className="view__houseMembers__heading">House Members</h1>
       {members && members.errorMessage && <h3 className="error__message__on__houseMembers__page">{members.errorMessage}</h3> }
       <ul>
       {!members.errorMessage && members.map(member => 

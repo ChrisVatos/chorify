@@ -1,9 +1,11 @@
 import React from "react";
-import { useRef } from 'react'
-import { redirect } from "react-router";
+import { useRef, useState } from 'react'
 import "./HouseMemberCard.css";
+import EditMemberModal from './EditMemberModal'
 
 function HouseMemberCard(props) {
+
+    const [isEditMemberModalVisible, setIsEditMemberModalVisible] = useState(false);
 
     const memberIDToDelete = useRef(null);
 
@@ -15,6 +17,18 @@ function HouseMemberCard(props) {
   return (
     <div>
       <div className="main__houseMember__card">
+
+        <EditMemberModal  
+                onClose={() => setIsEditMemberModalVisible(false)}
+                open={isEditMemberModalVisible}
+                currentData={{
+                    currentName: props.name, 
+                    currentEmail: props.email,
+                    currentNumber: props.phoneNumber, 
+                    currentID: props.id
+                }}>
+        </EditMemberModal>
+
         <div className="houseMember__ID__section">
           <h3>ID</h3>
           <h4 ref={memberIDToDelete}>{props.id}</h4>
@@ -36,7 +50,7 @@ function HouseMemberCard(props) {
         </div>
 
         <button className="deleteMember__button" onClick={deleteMember}>&#x2716;</button>
-        <button className="editMember__button">&#9998;</button>
+        <button className="editMember__button" onClick={() => setIsEditMemberModalVisible(true)}> &#9998;</button>
       </div>
     </div>
   );
