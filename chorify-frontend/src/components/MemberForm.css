@@ -46,6 +46,11 @@
     outline: none;
 }
 
+.invalid__input {
+    background-color: rgb(255, 194, 194);
+    border-radius: 6px;
+}
+
 .member__form__button {
     width: 40%;
     height: 2.5rem;
@@ -79,9 +84,23 @@
     opacity: 0.9;
 }
 
+.member__form__button:disabled,
+.member__form__button:disabled:hover {
+  background-color: #ccc;
+  background-image: none;
+  color: #7b7979;
+  border-color: #7b7979;
+  transform: scale(1);
+}
+
 .error__message {
     color:red;
     margin-left: 20px;
+}
+
+.input__correction {
+    color:red;
+    margin-bottom: 0;
 }
 
 .memberForm__buttons {
