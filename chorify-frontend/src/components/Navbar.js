@@ -24,7 +24,7 @@ function Navbar() {
           </NavLink>
 
           <NavLink 
-            to="/managers" 
+            to="/managers/newManager" 
             className={({ isActive }) =>
               isActive ? "active" : undefined
           }>

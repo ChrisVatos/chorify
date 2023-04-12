@@ -1,9 +1,9 @@
-.button__div {
+.button__div__managers {
     text-align: center;
     padding-top: 2rem;
 }
 
-.new__member__creation__button, .view__members__button  {
+.new__manager__creation__button, .view__managers__button  {
     width: 10%;
     transition: all 0.1s ease-in-out;
     height: 2.5rem;
@@ -19,23 +19,21 @@
     border: none;
 }
 
-.view__members__button {
+.view__managers__button {
     margin-left: 40px;
 }
 
-.new__member__creation__button:hover, .view__members__button:hover {
+.new__manager__creation__button:hover, .view__managers__button:hover {
     opacity: 0.9;
     color: black;
     background-image: linear-gradient(to left, #2df0dc, #2df0dc);
     transform: scale(1.1);
 }
 
-.houseMember__landingPage__description {
+.houseManager__landingPage__description {
     margin: 0 auto;
     margin-top: 2rem;
     width: 60%;
 }
 
-.house__member__greeting {
-    margin-top: 16rem;
-}
+

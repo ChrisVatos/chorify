@@ -1,0 +1,124 @@
+.new__manager__form{
+    position: relative;
+    top: 125px;
+}
+
+.manager__form {
+    display: flex;
+    flex-direction: column;
+    width: 70%;
+    margin: 0 auto;
+    background-color: white;
+    box-shadow: -8px 10px 6px rgb(164, 164, 164);
+    border-radius: 8px;
+    padding: 1rem;
+}
+
+.manager__form__title {
+    margin: 0 auto;
+    color: black;
+}
+
+.name__input, .email__input, .phoneNumber__input, .houseID__input, .id__input, .houseManagerType__input {
+    display: flex;
+    flex-direction: column;
+    padding: 1rem;
+}
+
+.user__inputs {
+    display: flex;
+    flex-direction: row;
+    margin: 0 auto;
+    height: 100%;
+    width: 100%;
+    align-items: center;
+}
+
+.houseManagerType__input select {
+    border: none;
+    color: rgb(117, 116, 116);
+    border-bottom: 2px solid #2df0dc;
+    margin-top: 18px;
+    font-size: 16px;
+    padding-bottom: 16px;
+
+}
+
+.name__input input, .email__input input, .phoneNumber__input input, .houseID__input input, .id__input input, .houseManagerType__input input {
+    width: inherit;
+    height: 1.5rem;
+    font-size: inherit;
+    padding: 15px;
+    border-top: none;
+    border-right: none;
+    border-left: none;
+    border-bottom: 2px solid #2df0dc;
+}
+
+.name__input input:focus, .email__input input:focus, .phoneNumber__input input:focus, .houseID__input input:focus, .id__input input:focus, .houseManagerType__input input:focus  {
+    outline: none;
+}
+
+.invalid__input {
+    background-color: rgb(255, 194, 194);
+    border-radius: 6px;
+}
+
+.manager__form__button {
+    width: 40%;
+    height: 2.5rem;
+    border-radius: 20px;
+    transition: all 0.1s ease-in-out;
+    margin: 0 auto;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    background-image: linear-gradient(to left, #2df0dc, #0093cd);
+    color: white;
+    font-weight: bold;
+    font-size: 16px;
+    border: none;
+}
+
+.cancel__manager_edit {
+    width: 40%;
+    height: 2.5rem;
+    border-radius: 20px;
+    transition: all 0.1s ease-in-out;
+    margin: 0 auto;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    color: red;
+    background-color: white;
+    border: 2px solid red;
+}
+
+.manager__form__button:hover, .cancel__manager__edit:hover {
+    transform: scale(1.1);
+    opacity: 0.9;
+}
+
+.manager__form__button:disabled,
+.manager__form__button:disabled:hover {
+  background-color: #ccc;
+  background-image: none;
+  color: #7b7979;
+  border-color: #7b7979;
+  transform: scale(1);
+}
+
+.error__message {
+    color:red;
+    margin-left: 20px;
+}
+
+.input__correction {
+    color:red;
+    margin-bottom: 0;
+}
+
+.managerForm__buttons {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}

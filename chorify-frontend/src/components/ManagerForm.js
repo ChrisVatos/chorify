@@ -1,10 +1,11 @@
 import { React, useState, useEffect } from 'react'
 import { Form, redirect, useActionData } from 'react-router-dom' 
-import './MemberForm.css'
+import './ManagerForm.css'
 
-function MemberForm({method, event, title, isForEdit, onClose, currentData}) {
+function ManagerForm({method, event, title, isForEdit, onClose, currentData}) {
 
     const data = useActionData();
+    console.log(method);
 
     let [nameInput, setNameInput] = useState("");
     let [nameInputTouched, setNameInputTouched] = useState(false);
@@ -82,10 +83,10 @@ function MemberForm({method, event, title, isForEdit, onClose, currentData}) {
     }
 
   return (
-    <Form className="new__member__form" action="/members/newMember" method={method}>
-        <div className="member__form">
+    <Form className="new__manager__form" action="/managers/newManager" method={method}>
+        <div className="manager__form">
 
-            <h2 className="member__form__title">{title}</h2>
+            <h2 className="manager__form__title">{title}</h2>
 
             <div className="user__inputs">
 
@@ -147,7 +148,17 @@ function MemberForm({method, event, title, isForEdit, onClose, currentData}) {
                         className={isNumberInvalid ? "invalid__input" : ""}
                     />
                     {isNumberInvalid && <p className="input__correction">Number must be in the form: ###-###-####</p>}
+                </div>
 
+                <div className="houseManagerType__input">
+                    {isForEdit && <label><strong>House Manager Type</strong></label>}
+                    <select  name="houseManagerType" id="houseManagerType" >
+                        <option value="" disabled selected>House Manager Type</option>
+                        <option value="parent">Parent</option>
+                        <option value="guardian">Guardian</option>
+                        <option value="olderSibling">Older Sibling</option>
+                        <option value="extendedFamily">Extended Family</option>
+                    </select>
                 </div>
 
                 {currentData === null &&
@@ -169,13 +180,13 @@ function MemberForm({method, event, title, isForEdit, onClose, currentData}) {
                 {data && data.errorMessage && <p className="error__message">{data.errorMessage}</p>}
             </div>
 
-            <div className="memberForm__buttons">
-                {isForEdit && <button className="cancel__member__edit" onClick={onClose}>Cancel</button>}
+            <div className="managerForm__buttons">
+                {isForEdit && <button className="cancel__manager__edit" onClick={onClose}>Cancel</button>}
                 <button 
-                    className="member__form__button" type="submit"
+                    className="manager__form__button" type="submit"
                     disabled={!formIsValid}
                 >
-                        {isForEdit ? "Save": "Add Member"}
+                        {isForEdit ? "Save": "Add Manager"}
                 </button>
             </div>
         </div>
@@ -183,40 +194,45 @@ function MemberForm({method, event, title, isForEdit, onClose, currentData}) {
   );
 }
 
-export default MemberForm;
+export default ManagerForm;
 
 export async function action({request, params}) {
-    
+    console.log("hi");
     const method = request.method;
 
     const data = await request.formData();
 
-    let url = 'http://localhost:8080/members/';
+    let url = 'http://localhost:8080/managers/';
 
     let fetchRequestData = {};
 
-    let editMemberData = {
+    let editManagerData = {
         id: data.get('id'),
         name: data.get('name'),
         phoneNumber: data.get('phoneNumber'),
+        houseManagerType: data.get("houseManagerType"),
         emailAddress: data.get('email'),
     }
 
-    let newMemberData = {
+    let newManagerrData = {
         id: data.get('id'),
         name: data.get('name'),
         phoneNumber: data.get('phoneNumber'),
         emailAddress: data.get('email'),
+        houseManagerType: data.get("houseManagerType"),
         houseID: data.get('houseID')
     }
 
     if(method === "POST") {
-        url = url + "newMember";
-        fetchRequestData = newMemberData;
+        url = url + "newManager";
+        fetchRequestData = newManagerrData;
     } else {
-        url = url + "update/" + editMemberData.id;
-        fetchRequestData = editMemberData;
+        url = url + "update/" + editManagerData.id;
+        fetchRequestData = editManagerData;
     }
+
+    console.log(url);
+    console.log(fetchRequestData);
 
     const response = await fetch(url, {
           method: method,
@@ -228,8 +244,9 @@ export async function action({request, params}) {
 
       if (!response.ok) {
         const error = await response.json();
+        console.log(error.message);
         return ({errorMessage: error.message, status: error.status});
       } else {
-        return redirect('/members')
+        return redirect('/managers')
       }
 }
