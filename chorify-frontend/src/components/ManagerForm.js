@@ -88,7 +88,7 @@ function ManagerForm({method, event, title, isForEdit, onClose, currentData}) {
 
             <h2 className="manager__form__title">{title}</h2>
 
-            <div className="user__inputs">
+            <div className="manager__user__inputs">
 
                 {isForEdit &&
                 <div className="id__input">
@@ -176,9 +176,10 @@ function ManagerForm({method, event, title, isForEdit, onClose, currentData}) {
 
                     </div>
                 }       
-
-                {data && data.errorMessage && <p className="error__message">{data.errorMessage}</p>}
             </div>
+
+            {data && data.errorMessage && <p className="error__message">{data.errorMessage}</p>}
+
 
             <div className="managerForm__buttons">
                 {isForEdit && <button className="cancel__manager__edit" onClick={onClose}>Cancel</button>}

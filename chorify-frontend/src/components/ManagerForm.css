@@ -25,7 +25,7 @@
     padding: 1rem;
 }
 
-.user__inputs {
+.manager__user__inputs {
     display: flex;
     flex-direction: row;
     margin: 0 auto;

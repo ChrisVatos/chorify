@@ -36,4 +36,14 @@
     width: 60%;
 }
 
+.house__manager__landing__page{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.house__manager__list {
+    margin-top: 14rem;
+}
+
 

@@ -1,0 +1,38 @@
+.main__houseManager__card {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-evenly;
+    border: 2px solid #2df0dc;
+    margin: 0 auto;
+    margin-bottom: 2rem;
+    background-color: aliceblue;
+    border-radius: 6px;
+    box-shadow: -8px 10px 6px rgb(164, 164, 164);
+    width: 50%;
+}
+
+.main__houseManager__card li {
+    list-style-type: none
+}
+
+.houseManager_ID__section, .houseManager__name__section, .houseManager__email__section, .houseManager__type__section, .houseManager__phoneNumber__section {
+    display: flex;
+    flex-direction: column;
+}
+
+.houseManager__ID__section h3, .houseManager__name__section h3, .houseManager__email__section h3, .houseManager__phoneNumber__section h3, .houseManager__type__section h3 {
+    margin: 0 auto;
+    margin-bottom: 1rem;
+    margin-top: 1rem;
+}
+
+.houseManager__ID__section h4, .houseManager__name__section h4, .houseManager__email__section h4, .houseManager__phoneNumber__section h4, .houseManager__type__section h4  {
+    margin: 0 auto;
+    margin-bottom: 1rem;
+    margin-top: 0.5rem;
+    font-weight: 400;
+    font-style: italic;
+}
+
+
